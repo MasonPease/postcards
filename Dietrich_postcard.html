@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Postcard</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .postcard-container {
+            width: 600px;
+            height: 400px;
+            perspective: 1000px; /* Adjusted for better 3D effect */
+        }
+        .postcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: transform 0.6s;
+        }
+        .postcard.flipped {
+            transform: rotateY(180deg);
+        }
+        .postcard img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+        }
+        .back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="postcard-container">
+        <div class="postcard" id="postcard">
+            <img src="Dietrich_map1.png" alt="Map" />
+            <img src="Dietrich_address.png" alt="Addresses" class="back" />
+        </div>
+    </div>
+    <script>
+        document.getElementById('postcard').addEventListener('click', function() {
+            // Toggle the 'flipped' class to trigger the flip effect
+            this.classList.toggle('flipped');
+        });
+    </script>
+</body>
+</html>
